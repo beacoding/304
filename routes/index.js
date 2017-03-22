@@ -5,7 +5,7 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'UBC Clubs' });
 });
 
-router.get('/registration', function(req, res, next) {
+router.get('/signup', function(req, res, next) {
     res.render('index', { title: 'UBC Clubs' });
 });
 

@@ -4,8 +4,6 @@ CREATE DATABASE ubc_clubs;
 
 USE ubc_clubs;
 
-
-
 CREATE TABLE Clubs(
   id INT AUTO_INCREMENT NOT NULL, 
   name VARCHAR(255),
@@ -33,10 +31,12 @@ CREATE TABLE Events(
 
 CREATE TABLE Posts(
   id INT AUTO_INCREMENT NOT NULL, 
-  club_id INT, 
+  club_id INT,
+  member_id INT,
   body VARCHAR(255),
   PRIMARY KEY (id),
-  FOREIGN KEY (club_id) REFERENCES Clubs(id)
+  FOREIGN KEY (club_id) REFERENCES Clubs(id),
+  FOREIGN KEY (member_id) REFERENCES Members(id)
 );
 
 CREATE TABLE Members_Clubs(
@@ -48,15 +48,13 @@ CREATE TABLE Members_Clubs(
 );
 
 CREATE TABLE Messages(
-  id INT AUTO_INCREMENT NOT NULL, 
-  club_id INT, 
-  sender_id INT, 
-  receiver_id INT, 
+  id INT AUTO_INCREMENT NOT NULL,
+  sender_name INT, 
+  receiver_name INT, 
   body VARCHAR(255),
   PRIMARY KEY (id),
-  FOREIGN KEY (club_id) REFERENCES Clubs(id),
-  FOREIGN KEY (sender_id) REFERENCES Members(id),
-  FOREIGN KEY (receiver_id) REFERENCES Members(id)
+  FOREIGN KEY (sender_name) REFERENCES Members(username),
+  FOREIGN KEY (receiver_name) REFERENCES Members(username)
 );
 
 

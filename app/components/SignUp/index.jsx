@@ -2,7 +2,7 @@ import React            from 'react';
 import styles           from './style.css';
 import axios            from 'axios';
 
-class Registration extends React.Component {
+class SignUp extends React.Component {
   constructor (props) {
     super (props);
 

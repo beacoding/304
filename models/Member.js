@@ -1,7 +1,7 @@
 const db = require('../db/config/config');
 
 module.exports = {
-	findMember: function (member) {
+	findOne: function (member) {
 		return new Promise ((resolve, reject) => {
 			const queryString = 'SELECT * FROM Members WHERE username =?';
 
@@ -20,7 +20,7 @@ module.exports = {
 		});
 	},
 
-	createMember: function (member) {
+	create: function (member) {
 		return new Promise ((resolve, reject) => {
 			const queryString = 'INSERT INTO Members SET ?';
 
@@ -34,14 +34,20 @@ module.exports = {
 		});
 	},
 
+  // findAll: function(club) {
+  //   return new Promise ((resolve, reject) => {
+  //     const queryString = 'SELECT * Members FROM Members INNER JOIN Clubs ON Members.club'
+  //   });
+  // }
+
 	findOrCreateMember: function(member) {
 		return new Promise ((resolve, reject) => {
-			findMember(member)
+			findOne(member)
 			.then((member) => {
 				if (member) {
 					resolve(member);
 				} else {
-					return createMember(member);
+					return create(member);
 				}
 			})
 			.then((member) => {
