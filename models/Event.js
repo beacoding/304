@@ -4,15 +4,16 @@ const db = require('../db/config/config');
 Expect obj to have keys sender_id, receiver_id, and body
 Ex. 
 {
-  club_id: 1
+  club_name: 'Book Club'
 }
 */
 
 module.exports = {
-	findAllWithClub: function(club) {
+	//Get all the events of a particular club
+	findAllWithClub: function(obj) 
 	  return new Promise ((resolve, reject) => {
-	    const queryString = 'SELECT * Events FROM Events INNER JOIN Clubs ON Events.club_id = Clubs.id';
-	    db.query(queryString, (err, res) => {
+	    const queryString = "SELECT * from Events e, Clubs c WHERE c.id = e.club_id AND c.name = ?";
+	    db.query(queryString, [obj.club_name], (err, res) => {
 	    	if (err) {
 	    		reject(err);
 	    	} else {

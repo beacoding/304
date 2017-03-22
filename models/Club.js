@@ -10,15 +10,14 @@ module.exports = {
 					reject(err);
 				} else {
 					if (res.length) {
-						const club = res[0];
-						resolve(club);
+						resolve(res[0]);
 					} else {
 						resolve(false);
 					}
 				}
 			});
 		});
-	},
+	},	
 
   //input: member, club. 
   //func: insert club into Clubs table. Then insert member + club into Members_Clubs table with admin true
@@ -31,6 +30,20 @@ module.exports = {
 					reject(err);
 				} else {
 					resolve(club);
+				}
+			});
+		});
+	},
+
+	findAllWithMember: function (member) {
+		return new Promise ((resolve, reject) => {
+			const queryString = 'SELECT * from Clubs c, Members m, Members_Clubs mc WHERE mc.club_id = c.id AND m.id = mc.member_id AND m.username = ?';
+
+			db.query(queryString, [member.username], (err, res) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(res);
 				}
 			});
 		});

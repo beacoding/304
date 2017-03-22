@@ -13,17 +13,16 @@ Ex.
 */
 
 module.exports = {
-	findOne: function (obj) {
+	findOne: function (member) {
 		return new Promise ((resolve, reject) => {
 			const queryString = 'SELECT * FROM Members WHERE username =?';
 
-			db.query(queryString, [obj.username], (err, res) => {
+			db.query(queryString, [member.username], (err, res) => {
 				if (err) {
 					reject(err);
 				} else {
 					if (res.length) {
-						const member = res[0];
-						resolve(member);
+						resolve(res[0]);
 					} else {
 						resolve(false);
 					}
@@ -32,15 +31,29 @@ module.exports = {
 		});
 	},
 
-	create: function (obj) {
+	create: function (member) {
 		return new Promise ((resolve, reject) => {
 			const queryString = 'INSERT INTO Members SET ?';
 
-			db.query(queryString, obj, (err, res) => {
+			db.query(queryString, member, (err, res) => {
 				if (err) {
 					reject(err);
 				} else {
-					resolve(obj);
+					resolve(member);
+				}
+			});
+		});
+	},
+
+	findAllWithClub: function (club) {
+		return new Promise ((resolve, reject) => {
+			const queryString = 'select * from Clubs c, Members m, Members_Clubs mc WHERE mc.club_id = c.id AND m.id = mc.member_id AND c.name = ?';
+
+			db.query(queryString, [club.name], (err, res) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(res);
 				}
 			});
 		});

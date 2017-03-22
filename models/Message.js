@@ -1,20 +1,26 @@
 const db = require('../db/config/config');
 
 /*
-Expect obj to have keys sender_id, receiver_id, and body
+Expect member to have keys sender_id, receiver_id, and body
 Ex. 
 {
-  sender_name: 'bea',
-  receiever_name: 'allan',
-  body: 'hello'
+  username: mike_zhang
+}
+
+Expect member to have keys sender_id, receiver_id, and body
+Ex. 
+{
+  sender_id: 1,
+  receiver_id: 2,
+  body: 'Hello'
 }
 */
 
 module.exports = {
-	findAll: function (obj) {
+	findAll: function (member) {
     return new Promise ((resolve, reject) => {
-      const queryString = 'SELECT * FROM Messages WHERE sender_name = ' + obj.sender_name + 'AND receiever_name = ' + obj.receiver_name);
-      db.query(queryString, (err, res) => {
+      const queryString = 'select * from Messages msg, Members m WHERE (msg.sender_id = m.id OR msg.receiver_id = m.id) AND m.username = ?';
+      db.query(queryString, [member.username], (err, res) => {
         if (err) {
           reject(err);
         } else {
@@ -33,7 +39,7 @@ module.exports = {
         } else {
           resolve(res);
         }
-      })
+      });
     });
   }
 }
