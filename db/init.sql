@@ -40,8 +40,8 @@ CREATE TABLE Posts(
 );
 
 CREATE TABLE Members_Clubs(
-  club_id INT, 
   member_id INT, 
+  club_id INT, 
   admin BOOLEAN,
   PRIMARY KEY (member_id, club_id),
   FOREIGN KEY (club_id) REFERENCES Clubs(id)
@@ -49,16 +49,16 @@ CREATE TABLE Members_Clubs(
 
 CREATE TABLE Messages(
   id INT AUTO_INCREMENT NOT NULL,
-  sender_name INT, 
-  receiver_name INT, 
+  sender_id INT, 
+  receiver_id INT, 
   body VARCHAR(255),
   PRIMARY KEY (id),
-  FOREIGN KEY (sender_name) REFERENCES Members(username),
-  FOREIGN KEY (receiver_name) REFERENCES Members(username)
+  FOREIGN KEY (sender_id) REFERENCES Members(id),
+  FOREIGN KEY (receiver_id) REFERENCES Members(id)
 );
 
 
 /*  Execute this file from the command line by typing:
- *    mysql -u root < server/init.sql
+ *    mysql -u root < db/init.sql
  *  to create the database and the tables.*/
 

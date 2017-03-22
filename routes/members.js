@@ -15,7 +15,7 @@ router.post('/signup', function (req, res, next) {
 		} else {
 			return Member.create(req.body);
 		}
-	})
+	}
 	.then((member) => {
 		res.send(201, {success: 'Created new user'});
 	})
