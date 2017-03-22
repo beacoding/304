@@ -28,18 +28,36 @@ INSERT INTO Clubs VALUES(5, 'Coffee Club');
 #select p.body FROM Posts p, Clubs c WHERE c.id = p.club_id AND c.name = 'Book Club';
 #select p.body FROM Posts p, Clubs c WHERE c.id = p.club_id AND c.id = 1;
 
-#get all the members of the book club
-#select * from Clubs c, Members m, Members_Clubs mc WHERE mc.club_id = c.id AND m.id = mc.member_id AND c.name = 'Book Club';
-#select * from Clubs c, Members m, Members_Clubs mc WHERE mc.club_id = c.id AND m.id = mc.member_id AND c.id = 1;
-
 INSERT INTO Posts VALUES(1, 1, 1, 'New books arrived!');
 INSERT INTO Posts VALUES(2, 2, 1, 'Relax yourself here!');
 INSERT INTO Posts VALUES(3, 3, 2, 'New movie!');
 INSERT INTO Posts VALUES(4, 1, 2, 'Getting your number!');
 INSERT INTO Posts VALUES(5, 2, 5, 'Summer drinks!');
 
+#get all the members of the book club
+#select * from Clubs c, Members m, Members_Clubs mc WHERE mc.club_id = c.id AND m.id = mc.member_id AND c.name = 'Book Club';
+
+#get all the clubs a mike zhang is part of
+#select * from Clubs c, Members m, Members_Clubs mc WHERE mc.club_id = c.id AND m.id = mc.member_id AND m.username = 'mike_zhang';
+
 INSERT INTO Members_Clubs VALUES(1, 1, true);
 INSERT INTO Members_Clubs VALUES(1, 2, true);
 INSERT INTO Members_Clubs VALUES(2, 3, true);
 INSERT INTO Members_Clubs VALUES(2, 1, true);
 INSERT INTO Members_Clubs VALUES(5, 2, true);
+
+#get all events of the book club
+#select * from Events e, Clubs c WHERE c.id = e.club_id AND c.name = 'Book Club';
+
+INSERT INTO Events VALUES(1, 1, DATE('2017-01-01'), 'Book Club Meeting');
+INSERT INTO Events VALUES(2, 2, DATE('2017-01-03'), 'Tea Party');
+INSERT INTO Events VALUES(3, 3, DATE('2017-01-09'), 'Movie Screening');
+INSERT INTO Events VALUES(4, 1, DATE('2017-01-13'), 'Book Club Meeting Part II');
+INSERT INTO Events VALUES(5, 2, DATE('2017-01-15'), 'Juice Party');
+
+
+
+
+
+
+
