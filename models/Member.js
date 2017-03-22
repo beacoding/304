@@ -1,11 +1,23 @@
 const db = require('../db/config/config');
 
+/*
+Expect obj to have keys sender_id, receiver_id, and body
+Ex. 
+  {
+    username: '',
+    password: '',
+    name: '',
+    department: '',
+    student_id: ''
+  };
+*/
+
 module.exports = {
-	findOne: function (member) {
+	findOne: function (obj) {
 		return new Promise ((resolve, reject) => {
 			const queryString = 'SELECT * FROM Members WHERE username =?';
 
-			db.query(queryString, [member.username], (err, res) => {
+			db.query(queryString, [obj.username], (err, res) => {
 				if (err) {
 					reject(err);
 				} else {
@@ -20,15 +32,15 @@ module.exports = {
 		});
 	},
 
-	create: function (member) {
+	create: function (obj) {
 		return new Promise ((resolve, reject) => {
 			const queryString = 'INSERT INTO Members SET ?';
 
-			db.query(queryString, member, (err, res) => {
+			db.query(queryString, obj, (err, res) => {
 				if (err) {
 					reject(err);
 				} else {
-					resolve(member);
+					resolve(obj);
 				}
 			});
 		});
