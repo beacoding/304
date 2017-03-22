@@ -1,0 +1,9 @@
+.container {
+	font-family: 'Rubik Mono One', sans-serif;
+	text-decoration: inherit; /* no underline */
+	font-size: 1em;
+	color: #EFEFEF;
+	text-align: center;
+	padding: 20px;
+	cursor: pointer;
+}
