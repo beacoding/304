@@ -33,7 +33,7 @@ module.exports = {
   create: function(obj) {
     return new Promise ((resolve, reject) => {
       const queryString = 'INSERT INTO Messages SET ?';
-      db.query(queryString, obj, (err, res) {
+      db.query(queryString, obj, (err, res) => {
         if (err) {
           reject(err);
         } else {

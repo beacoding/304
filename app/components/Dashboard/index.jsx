@@ -57,7 +57,6 @@ export default class Dashboard extends React.Component {
               return <li key={i} onClick={this.handleClubLinkClick.bind(this, club.club_id)} className={styles.link}> {club.name} </li>
             })}
           </ul>
-
         </div>
       </div>
     );
