@@ -15,7 +15,7 @@ router.post('/signup', function (req, res, next) {
 		} else {
 			return Member.create(req.body);
 		}
-	}
+	})
 	.then((member) => {
 		res.send(201, {success: 'Created new user'});
 	})
@@ -24,9 +24,10 @@ router.post('/signup', function (req, res, next) {
 	});
 });
 
-router.get('/login', function (req, res, next) {
+router.post('/login', function (req, res, next) {
+	console.log('in here');
 	//expect username password
-	Member.findOne(req.body.loginInfo)
+	Member.findOne(req.body)
 	.then((member) => {
 		if (member) {
 			if (req.body.password === member.password) {
@@ -37,8 +38,9 @@ router.get('/login', function (req, res, next) {
 		}
 	})
 	.catch((err) => {
+		console.log(err);
 		res.send(500, err);
-	})
+	});
 });
 
 module.exports = router;

@@ -17,7 +17,7 @@ module.exports = {
 				}
 			});
 		});
-	},	
+	},
 
   //input: member, club. 
   //func: insert club into Clubs table. Then insert member + club into Members_Clubs table with admin true

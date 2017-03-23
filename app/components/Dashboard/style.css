@@ -1,0 +1,20 @@
+.header {
+	font-family: 'Rubik Mono One', sans-serif;
+	text-align: center;
+	font-size: 5em;
+	color: #C44536;
+	background-color: #EFEFEF;
+	margin: 0;
+	padding: 30px;
+}
+
+.logout {
+	font-family: 'Montserrat', sans-serif;
+	color: #EFEFEF;
+	cursor: pointer;
+}
+
+.description {
+	font-family: 'Montserrat', sans-serif;
+	color: #EFEFEF;
+}

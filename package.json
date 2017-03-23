@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -d && mysql -u root < db/init.sql -p && nodemon app.js",
+    "start": "webpack -d && mysql -u root < db/init.sql -p && mysql -u root < db/data.sql -p && nodemon app.js",
     "dev-react": "webpack -d --watch",
     "css-minify": "grunt build",
     "reset-db": "mysql -u root < db/init.sql -p && mysql -u root < db/data.sql -p"

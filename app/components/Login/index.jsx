@@ -2,7 +2,7 @@ import React            from 'react';
 import styles           from './style.css';
 import axios            from 'axios';
 
-class Signup extends React.Component {
+class Login extends React.Component {
   constructor (props) {
     super (props);
 
@@ -11,14 +11,12 @@ class Signup extends React.Component {
 
     this.state = {
         username: '',
-        password: '',
-        name: '',
-        department: '',
-        student_id: ''
-    };
+        password: ''
+    }
   }
 
   changeInput(event) {
+    console.log(event.target.value);
     const type = event.target.dataset.type;
     const value = event.target.value;
 
@@ -30,15 +28,16 @@ class Signup extends React.Component {
   handleSubmit(e) {
     const context = this;
 
-    axios.post('/members/signup', {
+    axios.post('/members/login', {
        username: context.state.username,
        password: context.state.password,
-       name: context.state.name,
-       department: context.state.department,
-       student_id: context.state.student_id
     })
     .then((response) => {
-      console.log(response);
+      localStorage['user'] = JSON.stringify(response.data);
+      window.location = '/dashboard';
+    })
+    .catch((err) => {
+      console.error('Wrong Password');
     })
   }
 
@@ -63,32 +62,8 @@ class Signup extends React.Component {
               data-type='password'
               />
             <span id="password"></span>
-            <input 
-              onChange={this.changeInput}
-              className="login-input"
-              type='text' 
-              placeholder='name'
-              data-type='name'
-              />
-            <span id="name"></span>
-            <input 
-              onChange={this.changeInput}
-              className="login-input"
-              type='text' 
-              placeholder='department'
-              data-type='department'
-              />
-            <span id="department"></span>
-            <input 
-              onChange={this.changeInput}
-              className="login-input"
-              type='text' 
-              placeholder='student_id'
-              data-type='student_id'
-              />
-            <span id="student_id"></span>
             <div className="submit">
-              <button id="submit" type="submit" className="btn btn-success">Sign Up</button>
+              <button id="submit" type="submit" className="btn btn-success">Login</button>
             </div>
           </div>
         </form>
@@ -99,4 +74,4 @@ class Signup extends React.Component {
   }
 }
 
-module.exports = Signup;  
+module.exports = Login;  
