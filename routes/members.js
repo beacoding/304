@@ -3,7 +3,7 @@ const router = express.Router();
 const Member = require('../models/Member');
 
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'UBC Clubs' });
+	res.render('index', { title: 'UBC Clubs' });
 });
 
 router.post('/signup', function (req, res, next) {

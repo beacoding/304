@@ -37,12 +37,13 @@ module.exports = {
 
 	findAllWithMember: function (member) {
 		return new Promise ((resolve, reject) => {
-			const queryString = 'SELECT * from Clubs c, Members m, Members_Clubs mc WHERE mc.club_id = c.id AND m.id = mc.member_id AND m.username = ?';
+			const queryString = "SELECT * from Members m INNER JOIN Members_Clubs mc ON m.id = mc.member_id INNER JOIN Clubs c ON mc.club_id = c.id AND m.username =?";
 
 			db.query(queryString, [member.username], (err, res) => {
 				if (err) {
 					reject(err);
 				} else {
+          console.log(res[0]);
 					resolve(res);
 				}
 			});
@@ -70,7 +71,7 @@ module.exports = {
 		return new Promise ((resolve, reject) => {
 			const queryString = 'INSERT INTO Members_Clubs SET ?';
 		});
-	}
+	},
 
   //input: member, club. 
   //func: insert club into Clubs table. Then insert member + club into Members_Clubs table with admin false

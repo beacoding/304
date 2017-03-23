@@ -33,7 +33,7 @@ app.use('/messages', messages);
 app.use('/clubs', clubs);
 app.use('/members', members);
 app.use('/events', events);
-app.use('./posts', posts);
+app.use('/posts', posts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

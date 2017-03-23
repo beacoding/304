@@ -47,7 +47,7 @@ module.exports = {
 
 	findAllWithClub: function (club) {
 		return new Promise ((resolve, reject) => {
-			const queryString = 'select * from Clubs c, Members m, Members_Clubs mc WHERE mc.club_id = c.id AND m.id = mc.member_id AND c.name = ?';
+			const queryString = 'select * from Clubs c INNER JOIN Members_Clubs mc ON mc.club_id = c.id INNER JOIN Members m ON mc.member_id = m.id AND c.name = ?';
 
 			db.query(queryString, [club.name], (err, res) => {
 				if (err) {

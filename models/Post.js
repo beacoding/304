@@ -1,7 +1,7 @@
 const db = require('../db/config/config');
 
 module.exports = {
-	getAllPostsOfClub: function(club) {
+	findAllWithClub: function(club) {
    return new Promise ((resolve, reject) => {
      const queryString = 'select p.body FROM Posts p, Clubs c WHERE c.id = p.club_id AND c.name = ?';
 
@@ -11,7 +11,7 @@ module.exports = {
       } else {
         resolve(res);
       }
-    }); 
+    });
    });
  }
 }
