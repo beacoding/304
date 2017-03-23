@@ -1,11 +1,11 @@
 const db = require('../db/config/config');
 
 module.exports = {
-	findClub: function (club) {
+	findOne: function (club) {
 		return new Promise ((resolve, reject) => {
-			const queryString = 'SELECT * FROM Clubs WHERE name =?';
+			const queryString = 'SELECT * FROM Clubs WHERE id =?';
 
-			db.query(queryString, [club.name], (err, res) => {
+			db.query(queryString, [club.id], (err, res) => {
 				if (err) {
 					reject(err);
 				} else {

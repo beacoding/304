@@ -8,14 +8,14 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/allposts', function (req, res, next) {
-  Post.findAllWithClub(req.body)
+  Post.findAllWithClub(req.query)
   .then((posts) => {
     console.log(posts);
     res.send(posts);
   })
   .catch((err) => {
     res.send(500, err);
-  })
+  });
 });
 
 module.exports = router;

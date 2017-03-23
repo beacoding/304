@@ -10,10 +10,10 @@ Ex.
 
 module.exports = {
 	//Get all the events of a particular club
-	findAllWithClub: function(obj) 
+	findAllWithClub: function(obj) {
 	  return new Promise ((resolve, reject) => {
-	    const queryString = "SELECT * from Events e INNER JOIN Clubs c ON c.id = e.club_id AND c.name = ?";
-	    db.query(queryString, [obj.club_name], (err, res) => {
+	    const queryString = "SELECT * from Events e INNER JOIN Clubs c ON c.id = e.club_id AND c.id = ?";
+	    db.query(queryString, [obj.id], (err, res) => {
 	    	if (err) {
 	    		reject(err);
 	    	} else {

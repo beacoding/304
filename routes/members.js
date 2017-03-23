@@ -2,10 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Member = require('../models/Member');
 
-router.get('/', function(req, res, next) {
-	res.render('index', { title: 'UBC Clubs' });
-});
-
 router.post('/signup', function (req, res, next) {
 	//expect firstname, lastname, department, student_id, username
 	Member.findOne(req.body)
@@ -41,6 +37,10 @@ router.post('/login', function (req, res, next) {
 		console.log(err);
 		res.send(500, err);
 	});
+});
+
+router.get('/*', function(req, res, next) {
+  res.render('index', { title: 'UBC Clubs' });
 });
 
 module.exports = router;
