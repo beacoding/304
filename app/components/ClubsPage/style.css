@@ -1,3 +1,8 @@
+div {
+  font-family: 'Montserrat', sans-serif;
+  color: #EFEFEF;
+}
+
 .header {
   font-family: 'Rubik Mono One', sans-serif;
   text-align: center;
@@ -6,15 +11,4 @@
   background-color: #EFEFEF;
   margin: 0;
   padding: 30px;
-}
-
-.post {
-  font-family: 'Montserrat', sans-serif;
-  color: #EFEFEF;
-}
-
-.link {
-  cursor: pointer;
-  color: #EFEFEF;
-  font-family: 'Montserrat', sans-serif;
 }

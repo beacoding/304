@@ -8,6 +8,8 @@ import Dashboard								                from './Dashboard/index.jsx';
 import Club                                     from './Club/index.jsx';
 import Messages                                 from './Messages/index.jsx'
 import { requireAuth, isAuthenticated }         from '../utilities/auth';
+import ClubsPage                                from './ClubsPage/index.jsx';
+import Navbar                                   from './Navbar/index.jsx';
 
 ReactDOM.render((
     <Router history={browserHistory}>
@@ -17,5 +19,6 @@ ReactDOM.render((
       <Route path='/dashboard' component={Dashboard} onEnter={requireAuth.bind(this)}></Route>
       <Route path='/messages' component={Messages} onEnter={requireAuth.bind(this)}></Route>
       <Route path='/clubs/:club' component={Club} onEnter={requireAuth.bind(this)}></Route>
+      <Route path='/clubs' component={ClubsPage} onEnter={requireAuth.bind(this)}></Route>
   	</Router>
 ), document.getElementById('app'));

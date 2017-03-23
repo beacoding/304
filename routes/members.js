@@ -21,7 +21,6 @@ router.post('/signup', function (req, res, next) {
 });
 
 router.post('/login', function (req, res, next) {
-	console.log('in here');
 	//expect username password
 	Member.findOne(req.body)
 	.then((member) => {
