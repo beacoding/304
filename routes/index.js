@@ -17,5 +17,9 @@ router.get('/dashboard', function(req, res, next) {
   res.render('index', { title: 'UBC Clubs' });
 });
 
+router.get('/nerissa', function(req, res, next) {
+  res.render('index', { title: 'UBC Clubs' });
+});
+
 
 module.exports = router;
