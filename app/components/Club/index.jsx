@@ -23,6 +23,7 @@ export default class Club extends React.Component {
 
     axios.get('/posts/allposts', {params: {id: window.location.pathname.split('/')[2]}})
     .then((res) => {
+      console.log(res.data);
       context.setState({
         posts: res.data
       })
@@ -43,7 +44,6 @@ export default class Club extends React.Component {
   }
 
   render () {
-    console.log(this.state);
     return (
       <div>
         <div className={styles.header}>{this.state.name}</div>

@@ -10,8 +10,7 @@ export default class Event extends React.Component {
   render () {
     return (
       <div>
-        <div className={styles.post}>{this.props.event.description}</div>
-        <div className={styles.post}>{this.props.event.event_date}</div>
+        <div className={styles.post}>{this.props.event.event_date + ': ' + this.props.event.description}</div>
       </div>
       )
   }

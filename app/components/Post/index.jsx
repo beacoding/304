@@ -12,7 +12,9 @@ export default class Post extends React.Component {
   render () {
     return (
       <div>
-        <div className={styles.post}>{this.props.post.body}</div>
+        <div className={styles.post}>
+        {this.props.post.name + ': ' + this.props.post.body}
+        </div>
       </div>
       )
   }
