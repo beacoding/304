@@ -24,9 +24,35 @@ router.get('/allclubswithmember', function (req, res, next) {
   })
 });
 
+
+
+//TODO: find all members who are part of all clubs
+router.get('/allMembersWhoArePartOfAllClubs', function (req,res,next) {
+    Club.findAllWithAllMember(req.query)
+        .then((members) => {
+            res.send(members);
+        })
+        .catch((err) =>{
+            console.error(err);
+            res.send(500, err);
+    })
+});
+
+//TODO: find number of members in a club
+router.get('numberOfMemberInTheClub', function (req,res,next) {
+    Club.findAll(req.query)
+        .then((number) =>{
+          res.send(number);
+        }).catch((err) =>{
+          console.error(err);
+          res.send(500, err);
+    })
+});
+
+
 router.get('/club', function (req, res, next) {
   Club.findClubAndIfMember(req.query)
-  .then((club) => {
+      .then((club) => {
     if (club) {
       res.send(club);
     } else {
