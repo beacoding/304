@@ -17,18 +17,33 @@ export default class NerissaAndAllan extends React.Component {
     }
   }
 
-  componentDidMount () {
-    // axios.get('/clubs/allMembersWhoArePartOfAllClubs')
-    // .then((res) => {
-    //   console.log(res.data);
-    //   context.setState({
-    //     allMembersWhoArePartOfAllClubs: res.data
-    //   });
-    // })
-    // .catch((err) => {
-    //   console.error(err);
-    // });
+
+  allMembersWhoArePartOfAllClubs(){
+      axios.get('/clubs/allMembersWhoArePartOfAllClubs', {params: {member_id: this.state.member_id}})
+      .then((res) => {
+        console.log(res.data);
+        context.setState({
+          allMembersWhoArePartOfAllClubs: res.data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
+
+    numberOfMemberInTheClub(){
+        axios.get('/clubs/numberOfMemberInTheClub', {params: {club_id: this.state.club_id}})
+            .then((res) => {
+                console.log(res.data);
+                context.setState({
+                    numberOfMemberInTheClub: res.data
+                });
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }
+
 
   render () {
     return (

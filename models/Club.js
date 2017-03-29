@@ -43,7 +43,7 @@ module.exports = {
             club_name: club.name,
             club_id: club.id,
             member_id: obj.member_id
-          }
+          };
           return context.isMemberPartOfClub(info);
         }
       })
@@ -106,6 +106,54 @@ module.exports = {
 		});
 	},
 
+    //TODO:
+
+    findAllWithAllMember: function (clubs) {
+	    const context = this;
+	    return new Promise((resolve, reject) =>{
+	        context.findAll(clubs)
+                .then(clubs.forEach(function (club) {
+                    if (club) {
+                        const info = {
+                            club_name: club.name,
+                            club_id: club.id,
+                            member_id: obj.member_id
+                        };
+                        return context.isMemberPartOfClub(info);
+                    }
+                }))
+                .then((res) => {
+	            resolve(res);
+                })
+                .catch((err)=>{
+	            reject(err);
+                });
+	    })
+
+    },
+
+
+
+    countNumberOfElement: function (club) {
+        return new Promise((resolve, reject) =>{
+            const queryString = 'SELETE COUNT(*) FROM Club c WHERE c.id = ?';
+
+
+            db.query(queryString, [club.id], (err, res) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    let count = 0;
+                    for(let i=0; i<club.length; i++){
+                        count++;
+                    }
+                    resolve(count);
+                }
+            })
+        });
+    },
+
+
   isMemberPartOfClub: function(obj) {
     return new Promise ((resolve, reject) => {
       const queryString = 'SELECT COUNT(1) FROM Members_Clubs mc WHERE mc.member_id = ? AND mc.club_id = ?';
@@ -117,7 +165,7 @@ module.exports = {
           let resultObj = {
             club_name: obj.club_name,
             club_id: obj.club_id
-          }
+          };
           resultObj.isMember = res[0]['COUNT(1)'] === 1 ? true : false;
           resolve(resultObj);
         }
