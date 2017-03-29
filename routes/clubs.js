@@ -5,6 +5,7 @@ const Club = require('../models/Club');
 router.get('/allclubs', function (req, res, next) {
   Club.findAll()
   .then((clubs) => {
+    console.log(clubs);
     res.send(clubs);
   })
   .catch((err) => {
@@ -21,7 +22,7 @@ router.get('/allclubswithmember', function (req, res, next) {
   .catch((err) => {
     console.error(err);
     res.send(500, err);
-  })
+  });
 });
 
 
@@ -48,7 +49,6 @@ router.get('/numberOfClubs', function (req,res,next) {
           res.send(500, err);
     })
 });
-
 
 router.get('/club', function (req, res, next) {
   Club.findClubAndIfMember(req.query)

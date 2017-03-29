@@ -33,6 +33,7 @@ INSERT INTO Posts VALUES(2, 2, 1, 'Relax yourself here!');
 INSERT INTO Posts VALUES(3, 3, 2, 'New movie!');
 INSERT INTO Posts VALUES(4, 1, 2, 'Getting your number!');
 INSERT INTO Posts VALUES(5, 2, 5, 'Summer drinks!');
+INSERT INTO Posts VALUES(6, 2, 5, "Delete me");
 
 #get all the members of the book club
 #select * from Clubs c, Members m, Members_Clubs mc WHERE mc.club_id = c.id AND m.id = mc.member_id AND c.name = 'Book Club';

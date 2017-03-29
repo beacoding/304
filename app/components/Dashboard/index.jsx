@@ -24,7 +24,7 @@ export default class Dashboard extends React.Component {
 
   componentWillMount() {
     var context = this;
-    axios.get('/clubs/allclubswithmember', {params: {username: JSON.parse(localStorage.user).username}})
+    axios.get('/clubs/allclubswithmember', {params: {username: this.state.username}})
     .then((res) => {
       console.log(res.data);
       context.setState({
