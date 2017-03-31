@@ -2,3 +2,7 @@
  font-family: 'Montserrat', sans-serif;
  color: #EFEFEF; 
 }
+
+.delete {
+	cursor: pointer;
+}

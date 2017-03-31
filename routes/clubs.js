@@ -88,6 +88,81 @@ router.post('/join', function(req, res, next) {
   })
 })
 
+router.post('/avgmember', function(req, res, next) {
+  console.log('in average member', req.body);
+  Club.avgMembersInClub(req.body)
+  .then((post) => {
+    res.send(post);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send(500, err);
+  })
+});
+
+router.post('/maxmember', function(req, res, next) {
+  console.log('in max member', req.body);
+  Club.maxMembersInClub(req.body)
+  .then((post) => {
+    res.send(post);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send(500, err);
+  })
+});
+
+router.post('/minmember', function(req, res, next) {
+  console.log('in min member', req.body);
+  Club.minMembersInClub(req.body)
+  .then((post) => {
+    res.send(post);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send(500, err);
+  })
+});
+
+router.post('/avgNest', function(req, res, next) {
+  console.log('in Avg Nested aggregation member', req.body);
+  Club.avgNestQuery(req.body)
+  .then((post) => {
+    res.send(post);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send(500, err);
+  })
+});
+
+router.post('/maxNest', function(req, res, next) {
+  console.log('in max Nested aggregation member', req.body);
+  Club.maxNestQuery(req.body)
+  .then((post) => {
+    res.send(post);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send(500, err);
+  })
+});
+
+router.post('/minNest', function(req, res, next) {
+  console.log('in min Nested aggregation member', req.body);
+  Club.minNestQuery(req.body)
+  .then((post) => {
+    res.send(post);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send(500, err);
+  })
+});
+
+
+
+
 router.get('/*', function (req, res, next) {
   res.render('index', { title: 'UBC Clubs' });
 });

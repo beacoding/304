@@ -158,6 +158,15 @@ module.exports = {
     });
   },
 
+
+//COUNT
+// select count(id) from posts p, members_clubs mc where p.member_id = mc.member_id AND p.club_id = mc.club_id;
+
+// select count(id) from posts p where p.member_id = ? and club_id = ?;;
+
+// MAX 
+
+
 	/*
 	Expect obj to have keys sender_id, receiver_id, and body
 	Ex. 
@@ -194,7 +203,8 @@ module.exports = {
         }
       });
 		});
-	},
+	}, 
+
 
   /*input: member, club. 
     func: insert club into Clubs table. Then insert member + club into Members_Clubs table with admin false
@@ -207,7 +217,6 @@ module.exports = {
   joinClub: function (obj) {
     return new Promise ((resolve, reject) => {
       const queryString = 'INSERT INTO Members_Clubs SET ?';
-
       db.query(queryString, obj, (err, res) => {
         if (err) {
           reject(err);
@@ -216,6 +225,82 @@ module.exports = {
         }
       })
     })
+  },
+
+  avgMembersInClub: function () {
+    return new Promise ((resolve, reject) => {
+      const queryString = 'select avg(total_members) from Clubs';
+      db.query(queryString, (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      })
+    });
+  },
+
+  maxMembersInClub: function () {
+    return new Promise ((resolve, reject) => {
+      const queryString = 'select max(total_members) from Clubs';
+      db.query(queryString, (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      })
+    });
+  },
+
+  minMembersInClub: function () {
+    return new Promise ((resolve, reject) => {
+      const queryString = 'select min(total_members) from Clubs';
+      db.query(queryString, (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      })
+    });
+  },
+
+  avgNestQuery: function () {
+    return new Promise ((resolve, reject) => {
+      const queryString = 'select mc.member_id, avg(c.total_members) from Clubs c, Members_clubs mc where mc.club_id=c.id group by mc.member_id';
+      db.query(queryString, (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      })
+    });
+  },
+  maxNestQuery: function () {
+    return new Promise ((resolve, reject) => {
+      const queryString = 'select mc.member_id, max(c.total_members) from Clubs c, Members_clubs mc where mc.club_id=c.id group by mc.member_id';
+      db.query(queryString, (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      })
+    });
+  },
+  minNestQuery: function () {
+    return new Promise ((resolve, reject) => {
+      const queryString = 'select mc.member_id, MIN(c.total_members) from Clubs c, Members_clubs mc where mc.club_id=c.id group by mc.member_id';
+      db.query(queryString, (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      })
+    });
   },
 
 }

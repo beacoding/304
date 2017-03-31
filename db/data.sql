@@ -6,6 +6,7 @@ INSERT INTO Members VALUES(3, 'joe_kim','abcdef','Joe Kim','math', 68645378);
 INSERT INTO Members VALUES(4, 'mary_stemoe','abcdef','Mary Stemoe','econ', 36382637);
 INSERT INTO Members VALUES(5, 'tom_lee','abcdef','Tom Lee','cpsc', 24845393);
 
+
 #get all the messages of mike zhang
 #select * from Messages msg, Members m WHERE (msg.sender_id = m.id OR msg.receiver_id = m.id) AND m.username = 'mike_zhang';
 
@@ -20,6 +21,7 @@ INSERT INTO Clubs VALUES(2, 'Tea Club', 89)   ;
 INSERT INTO Clubs VALUES(3, 'Movie Club', 47);
 INSERT INTO Clubs VALUES(4, 'Write Club', 35);
 INSERT INTO Clubs VALUES(5, 'Coffee Club', 90);
+INSERT INTO Clubs VALUES(6, 'Delete Testing Club', 350);
 
 #get all the names of people who made posts
 #select m.name FROM Posts p, Members m WHERE m.id = p.member_id;
@@ -33,7 +35,14 @@ INSERT INTO Posts VALUES(2, 2, 1, 'Relax yourself here!');
 INSERT INTO Posts VALUES(3, 3, 2, 'New movie!');
 INSERT INTO Posts VALUES(4, 1, 2, 'Getting your number!');
 INSERT INTO Posts VALUES(5, 2, 5, 'Summer drinks!');
-INSERT INTO Posts VALUES(6, 2, 5, "Delete me");
+INSERT INTO Posts VALUES(6, 6, 1, 'Delete Me! 1');
+INSERT INTO Posts VALUES(7, 6, 1, 'Delete Me! 2');
+INSERT INTO Posts VALUES(8, 6, 1, 'Delete Me! 3');
+INSERT INTO Posts VALUES(9, 6, 1, 'Delete Me! 4');
+INSERT INTO Posts VALUES(10, 6, 2, 'Delete Me! Admin 1');
+INSERT INTO Posts VALUES(11, 6, 2, 'Delete Me! Admin 2');
+INSERT INTO Posts VALUES(12, 6, 2, 'Delete Me! Admin 3');
+INSERT INTO Posts VALUES(13, 6, 2, 'Delete Me! Admin 4');
 
 #get all the members of the book club
 #select * from Clubs c, Members m, Members_Clubs mc WHERE mc.club_id = c.id AND m.id = mc.member_id AND c.name = 'Book Club';
@@ -46,6 +55,7 @@ INSERT INTO Members_Clubs VALUES(1, 2, true);
 INSERT INTO Members_Clubs VALUES(1, 3, true);
 INSERT INTO Members_Clubs VALUES(1, 4, true);
 INSERT INTO Members_Clubs VALUES(1, 5, true);
+INSERT INTO Members_Clubs VALUES(1, 6, true);
 INSERT INTO Members_Clubs VALUES(2, 3, true);
 INSERT INTO Members_Clubs VALUES(2, 1, true);
 INSERT INTO Members_Clubs VALUES(5, 1, true);
@@ -53,6 +63,7 @@ INSERT INTO Members_Clubs VALUES(5, 2, true);
 INSERT INTO Members_Clubs VALUES(5, 3, true);
 INSERT INTO Members_Clubs VALUES(5, 4, true);
 INSERT INTO Members_Clubs VALUES(5, 5, true);
+INSERT INTO Members_Clubs VALUES(5, 6, true);
 
 #get all events of the book club
 #select * from Events e, Clubs c WHERE c.id = e.club_id AND c.name = 'Book Club';
