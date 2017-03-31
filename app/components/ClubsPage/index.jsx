@@ -33,7 +33,9 @@ export default class ClubsPage extends React.Component {
       {this.state.clubs.map((club, i) => {
         return <li className={styles.description} key={i}> {club.name} </li>
       })}
+      <div> -- END OF CLUBS --  </div>
       </div>
+
       )
   }
 }
