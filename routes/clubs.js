@@ -28,7 +28,7 @@ router.get('/allclubswithmember', function (req, res, next) {
 
 //TODO: find all members who are part of all clubs
 router.get('/allMembersWhoArePartOfAllClubs', function (req,res,next) {
-    Club.findAllWithAllMember(req.query)
+    Club.findAllWithAllMember2()
         .then((members) => {
             res.send(members);
         })
@@ -39,10 +39,10 @@ router.get('/allMembersWhoArePartOfAllClubs', function (req,res,next) {
 });
 
 //TODO: find number of members in a club
-router.get('numberOfMemberInTheClub', function (req,res,next) {
-    Club.findAll(req.query)
-        .then((number) =>{
-          res.send(number);
+router.get('/numberOfClubs', function (req,res,next) {
+    Club.countNumberOfElement()
+        .then((clubs) =>{
+          res.send(clubs);
         }).catch((err) =>{
           console.error(err);
           res.send(500, err);

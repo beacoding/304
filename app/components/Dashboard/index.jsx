@@ -16,7 +16,9 @@ export default class Dashboard extends React.Component {
       clubs: [],
       username: JSON.parse(localStorage['user']).username,
       user_id: JSON.parse(localStorage['user']).id,
-      newClubVal: ''
+        current_student_id: JSON.parse(localStorage['user']).student_id,
+      newClubVal: '',
+        updateStudentId: 0
     }
   }
 
@@ -61,6 +63,32 @@ export default class Dashboard extends React.Component {
     })
   }
 
+  changeUsernameHandler(e) {
+    this.setState({
+      modifiedStudentId: e.target.value
+    });
+  }
+
+  handleKeyPress(e) {
+    var context = this;
+    if (e.charCode === 13) {
+      console.log(this.state.modifiedStudentId);
+      axios.post('/members/updateStudentId', {current_student_id: this.state.current_student_id,  modified_student_id: this.state.modifiedStudentId})
+          .then((res) => {
+        console.log('this is res data', res.data);
+              context.setState({
+              current_student_id: this.state.modifiedStudentId
+              });
+              var user = JSON.parse(localStorage['user']);
+              user.student_id = this.state.modifiedStudentId;
+              localStorage['user'] = JSON.stringify(user);
+          })
+          .catch((err) => {
+              console.error(err);
+          });
+    }
+  }
+
   render () {
     return (
       <div>
@@ -68,6 +96,13 @@ export default class Dashboard extends React.Component {
         <div className={styles.links}>
           <div>
             <div className={styles.description}>Welcome {this.state.username}</div>
+            <div>
+              Student Id: {this.state.current_student_id}
+            </div>
+            <div>
+              Change student_id:
+              <input onChange={this.changeUsernameHandler.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} placeholder="Change student_id here" />
+            </div>
           </div>
 	        <div>
             <div className={styles.link} onClick={this.handleLogout}>Logout</div>

@@ -39,6 +39,19 @@ router.post('/login', function (req, res, next) {
 });
 
 
+//TODO: update student_id
+router.post('/updateStudentId', function (req,res,next) {
+    Member.updateStudentId(req.body)
+        .then((members) => {
+            res.send(members);
+        })
+        .catch((err) =>{
+            console.error(err);
+            res.send(500, err);
+        })
+});
+
+
 router.get('/*', function(req, res, next) {
   res.render('index', { title: 'UBC Clubs' });
 });

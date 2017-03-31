@@ -59,6 +59,26 @@ module.exports = {
 		});
 	},
 
+
+	//TODO: update
+    updateStudentId: function (member) {
+		console.log(member);
+        return new Promise ((resolve, reject) => {
+            const queryString = 'UPDATE Members SET student_id=? WHERE student_id=?;';
+
+            db.query(queryString, [member.modified_student_id, member.current_student_id], (err, res) => {
+                if (err) {
+                    reject(err);
+                } else {
+                	console.log('in here', res);
+                    resolve(res);
+                }
+            });
+        });
+    },
+
+
+
   // findAll: function(club) {
   //   return new Promise ((resolve, reject) => {
   //     const queryString = 'SELECT * Members FROM Members INNER JOIN Clubs ON Members.club'
