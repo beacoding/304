@@ -55,6 +55,7 @@ INSERT INTO Members_Clubs VALUES(1, 2, true);
 INSERT INTO Members_Clubs VALUES(1, 3, true);
 INSERT INTO Members_Clubs VALUES(1, 4, true);
 INSERT INTO Members_Clubs VALUES(1, 5, true);
+INSERT INTO Members_Clubs VALUES(1, 6, true);
 INSERT INTO Members_Clubs VALUES(2, 3, true);
 INSERT INTO Members_Clubs VALUES(2, 1, true);
 INSERT INTO Members_Clubs VALUES(5, 1, true);
@@ -62,6 +63,7 @@ INSERT INTO Members_Clubs VALUES(5, 2, true);
 INSERT INTO Members_Clubs VALUES(5, 3, true);
 INSERT INTO Members_Clubs VALUES(5, 4, true);
 INSERT INTO Members_Clubs VALUES(5, 5, true);
+INSERT INTO Members_Clubs VALUES(5, 6, true);
 
 #get all events of the book club
 #select * from Events e, Clubs c WHERE c.id = e.club_id AND c.name = 'Book Club';
