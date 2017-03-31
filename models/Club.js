@@ -62,7 +62,7 @@ module.exports = {
       context.insertClub(obj)
       .then((club) => {
         if (club) {
-          let member_club = {member_id: obj.member_id, club_id: club.insertId, admin: true}
+          let member_club = {member_id: obj.member_id, club_id: club.insertId, admin: true};
           return context.addAdminToClub(member_club);         
         }
       })
@@ -80,7 +80,7 @@ module.exports = {
 	insertClub: function (obj) {
 		return new Promise ((resolve, reject) => {
 			const queryString = 'INSERT INTO Clubs SET ?';
-      const club = {name: obj.club_name}
+      const club = {name: obj.club_name};
 
 			db.query(queryString, club, (err, res) => {
 				if (err) {
@@ -108,49 +108,34 @@ module.exports = {
 
     //TODO:
 
-    findAllWithAllMember: function (clubs) {
-	    const context = this;
-	    return new Promise((resolve, reject) =>{
-	        context.findAll(clubs)
-                .then(clubs.forEach(function (club) {
-                    if (club) {
-                        const info = {
-                            club_name: club.name,
-                            club_id: club.id,
-                            member_id: obj.member_id
-                        };
-                        return context.isMemberPartOfClub(info);
-                    }
-                }))
-                .then((res) => {
-	            resolve(res);
-                })
-                .catch((err)=>{
-	            reject(err);
-                });
-	    })
+    findAllWithAllMember2: function () {
+        const context = this;
+        return new Promise((resolve, reject) =>{
+            const queryString = "SELECT m.username from Members m WHERE NOT EXISTS (SELECT * FROM Clubs c WHERE NOT EXISTS (SELECT * FROM Members_Clubs mc WHERE mc.member_id = m.id AND mc.club_id=c.id));"
+            db.query(queryString, (err, res) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(res);
+                }
+            });
+        })
 
     },
 
 
 
-    countNumberOfElement: function (club) {
+    countNumberOfElement: function () {
         return new Promise((resolve, reject) =>{
-            const queryString = 'SELETE COUNT(*) FROM Club c WHERE c.id = ?';
-
-
-            db.query(queryString, [club.id], (err, res) => {
+            const queryString = 'SELECT COUNT(*) FROM Clubs';
+            db.query(queryString, (err, res) => {
                 if (err) {
                     reject(err);
                 } else {
-                    let count = 0;
-                    for(let i=0; i<club.length; i++){
-                        count++;
-                    }
-                    resolve(count);
+                    resolve(res);
                 }
-            })
-        });
+            });
+        })
     },
 
 

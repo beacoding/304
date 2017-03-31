@@ -13,45 +13,61 @@ export default class NerissaAndAllan extends React.Component {
     super (props);
 
     this.state = {
-      allMembersWhoArePartOfAllClubs: []
+      allMembersWhoArePartOfAllClubs: [],
+      numberOfClubs: [],
+       count: 0
+
     }
   }
 
+    componentWillMount () {
+      let context = this;
 
-  allMembersWhoArePartOfAllClubs(){
-      axios.get('/clubs/allMembersWhoArePartOfAllClubs', {params: {member_id: this.state.member_id}})
-      .then((res) => {
-        console.log(res.data);
-        context.setState({
-          allMembersWhoArePartOfAllClubs: res.data
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-
-    numberOfMemberInTheClub(){
-        axios.get('/clubs/numberOfMemberInTheClub', {params: {club_id: this.state.club_id}})
-            .then((res) => {
-                console.log(res.data);
-                context.setState({
-                    numberOfMemberInTheClub: res.data
+            axios.get('/clubs/allMembersWhoArePartOfAllClubs')
+                .then((res) => {
+                    context.setState({
+                        allMembersWhoArePartOfAllClubs: res.data
+                    });
+                })
+                .catch((err) => {
+                    console.error(err);
                 });
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+
+            axios.get('/clubs/numberOfClubs')
+                .then((res) => {
+                console.log(res.data);
+                    context.setState({
+                        numberOfClubs: res.data[0]["COUNT(*)"]
+                    });
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+
     }
 
 
-  render () {
+
+    render () {
     return (
       <div>
         <div>
           All members who are part of all clubs:
-          {this.state.allMembersWhoArePartOfAllClubs}
+            <div>
+                <ul>
+                    {this.state.allMembersWhoArePartOfAllClubs.map((member) => {
+                        return <li className="list-class">{member.username}</li>
+                    })}
+                </ul>
+            </div>
         </div>
+
+          <div>
+              How many Clubs?
+              <div>
+                  {this.state.numberOfClubs}
+              </div>
+          </div>
       </div>
       )
   }

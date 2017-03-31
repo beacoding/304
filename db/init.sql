@@ -7,6 +7,7 @@ USE ubc_clubs;
 CREATE TABLE Clubs(
   id INT AUTO_INCREMENT NOT NULL, 
   name VARCHAR(255),
+  total_members INT,
   PRIMARY KEY (id)
 );
 
