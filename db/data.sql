@@ -16,12 +16,12 @@ INSERT INTO Messages VALUES(3, 2, 3, 'Happy time here');
 INSERT INTO Messages VALUES(4, 1, 4, 'Nice to meet you');
 INSERT INTO Messages VALUES(5, 2, 5, 'Thanks');
 
-INSERT INTO Clubs VALUES(1, 'Book Club', 100);
-INSERT INTO Clubs VALUES(2, 'Tea Club', 89)   ;
-INSERT INTO Clubs VALUES(3, 'Movie Club', 47);
-INSERT INTO Clubs VALUES(4, 'Write Club', 35);
-INSERT INTO Clubs VALUES(5, 'Coffee Club', 90);
-INSERT INTO Clubs VALUES(6, 'Delete Testing Club', 350);
+INSERT INTO Clubs VALUES(1, 'Book Club', 3);
+INSERT INTO Clubs VALUES(2, 'Tea Club', 2)   ;
+INSERT INTO Clubs VALUES(3, 'Movie Club', 2);
+INSERT INTO Clubs VALUES(4, 'Write Club', 2);
+INSERT INTO Clubs VALUES(5, 'Coffee Club', 2  );
+INSERT INTO Clubs VALUES(6, 'Delete Testing Club', 1);
 
 #get all the names of people who made posts
 #select m.name FROM Posts p, Members m WHERE m.id = p.member_id;

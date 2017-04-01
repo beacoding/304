@@ -21,6 +21,6 @@ ReactDOM.render((
       <Route path='/messages' component={Messages} onEnter={requireAuth.bind(this)}></Route>
       <Route path='/clubs/:club' component={Club} onEnter={requireAuth.bind(this)}></Route>
       <Route path='/clubs' component={ClubsPage} onEnter={requireAuth.bind(this)}></Route>
-      <Route path='/nerissa' component={NerissaAndAllan} onEnter={requireAuth.bind(this)}></Route>
+      <Route path='/stats' component={NerissaAndAllan} onEnter={requireAuth.bind(this)}></Route>
   	</Router>
 ), document.getElementById('app'));

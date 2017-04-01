@@ -1,6 +1,7 @@
 import React              from 'react';
 import styles             from './style.css';
 import axios              from 'axios';
+import Navbar             from '../Navbar/index.jsx';
 
 export default class ClubsPage extends React.Component {
   constructor (props) {
@@ -30,12 +31,15 @@ export default class ClubsPage extends React.Component {
     return (
       <div>
       <div className={styles.header}>ALL CLUBS</div>
-      {this.state.clubs.map((club, i) => {
-        return <li className={styles.description} key={i}> {club.name} </li>
-      })}
-      <div> -- END OF CLUBS --  </div>
+      <Navbar />
+      <div className="row">
+        <div className={"col-md-12 " + styles.clubscontainer}> 
+          {this.state.clubs.map((club, i) => {
+            return <div className={styles.clubs}><a className={styles.clubslink} href={"/clubs/" + club.id} className={styles.description} key={i}> {club.name} </a></div>
+          })}
+        </div>
       </div>
-
+      </div>
       )
   }
 }

@@ -1,6 +1,7 @@
 import React              from 'react';
 import styles             from './style.css';
 import axios              from 'axios';
+import Navbar             from '../Navbar/index.jsx';
 
 /*
 all members who are part of all clubs
@@ -130,26 +131,39 @@ export default class NerissaAndAllan extends React.Component {
   }
 
   render () {
-    console.log('this is AVG post', this.state.avgmember);
-    console.log('this is AVG Nest post', this.state.avgNest);
-    if (this.state.minmember) {
+    if (this.state.minNest) {
       return (
         <div>
+          <div className={styles.header}>Statistics</div>
+          <Navbar />
           <div>
             The AVG, MAX and MIN of All the Clubs:
           </div>
              <br/>
-            <span> AVG Member: {this.state.avgmember[0]["avg(total_members)"]} </span>
+            <div> AVG # of Members: {this.state.avgmember[0]["avg(total_members)"]} </div>
             <br/>
-            <span> MAX Member: {this.state.maxmember[0]["max(total_members)"]} </span>
+            <div> MAX # of Members: {this.state.maxmember[0]["max(total_members)"]} </div>
             <br/>
-            <span> MIN Member: {this.state.minmember[0]["min(total_members)"]} </span>
+            <div> MIN # of Members: {this.state.minmember[0]["min(total_members)"]} </div>
              <br/>
-            <span> AVG Nested Query:  {JSON.stringify(this.state.avgNest)}</span>
+            <div> The average # of members of all the clubs a user is part of  
+            {this.state.avgNest.map((member) => {
+              return <div> {member.username + ": " + member["avg(c.total_members)"]}</div>
+            })}
            <br/>
-            <span> MAX Nested Query:  {JSON.stringify(this.state.maxNest)}</span>
+            <div> The max # of members of all the clubs a user is part of    
+            {this.state.maxNest.map((member) => {
+              return <div> {member.username + ": " + member["max(c.total_members)"]}</div>
+            })}
+            </div>
             <br/>
-            <span> MIN Nested Query:  {JSON.stringify(this.state.minNest)}</span>
+            <div> The min # of members of all the clubs a user is part of    
+            {this.state.minNest.map((member) => {
+              console.log(member);
+              return <div> {member.username + ": " + member["MIN(c.total_members)"]}</div>
+            })}            
+            </div>
+            </div>
             <br/>
             <div>
               All members who are part of all clubs:
@@ -163,7 +177,7 @@ export default class NerissaAndAllan extends React.Component {
             </div>
 
               <div>
-                  How many Clubs?
+                  Total # of Clubs
                   <div>
                       {this.state.numberOfClubs}
                   </div>

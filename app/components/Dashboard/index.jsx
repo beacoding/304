@@ -2,6 +2,7 @@ import React              from 'react';
 import styles             from './style.css';
 import axios              from 'axios';
 import { convertToRoute } from '../../utilities/route';
+import Navbar             from '../Navbar/index.jsx';
 
 export default class Dashboard extends React.Component {
   constructor (props) {
@@ -89,40 +90,57 @@ export default class Dashboard extends React.Component {
     }
   }
 
+  showModalForChangeUserId (e) {
+    this.setState({
+      modal: !this.state.modal
+    })    
+  }
+
   render () {
-    return (
-      <div>
-        <h1 className={styles.header}> Dashboard </h1>
-        <div className={styles.links}>
-          <div>
-            <div className={styles.description}>Welcome {this.state.username}</div>
-            <div>
-              Student Id: {this.state.current_student_id}
+      return (
+        <div>
+          <h1 className={styles.header}> Dashboard </h1>
+          <Navbar/>
+          <div className="row">
+            <div className={"col-md-12" + " " + styles.userinfo}>
+              <div className="row">
+                <div className="col-md-12">
+                  Welcome {this.state.username}
+                </div>
+              </div>
+              <div className="row">
+                <div className={"col-md-12" + " " + styles.link} onClick={this.showModalForChangeUserId.bind(this)}>
+                  {this.state.current_student_id}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12">
+                  {this.state.modal ? <div> <input onChange={this.changeUsernameHandler.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} placeholder="Change student_id here" /></div> : null}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className={styles.link} onClick={this.handleLogout}>Logout</div>
+                </div>
+              </div>
             </div>
-            <div>
-              Change student_id:
-              <input onChange={this.changeUsernameHandler.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} placeholder="Change student_id here" />
+          </div>
+          <div className="row">
+            <div className={"col-md-6" + " " + styles.clubs}>
+              <div className={styles.boxheader}> My Clubs </div>
+              <div className={styles.description}>
+                <form onSubmit={this.handleSubmit}>
+                  <input onChange={this.handleInputChange} placeholder="New Club" />
+                </form>
+              </div>
+              <div className={styles.description}>
+                {this.state.clubs.map((club, i) => {
+                  return <div key={i} onClick={this.handleLinkClick.bind(this, club.club_id)} className={styles.link}> {club.name} </div>
+                })}
+              </div>
             </div>
-          </div>
-	        <div>
-            <div className={styles.link} onClick={this.handleLogout}>Logout</div>
-          </div>
-          <div>
-            <div className={styles.link} onClick={this.handleLinkClick.bind(this,'allclubs')}>All Clubs</div>
-          </div>
-          <ul className={styles.description}>
-          My Clubs
-            {this.state.clubs.map((club, i) => {
-              return <li key={i} onClick={this.handleLinkClick.bind(this, club.club_id)} className={styles.link}> {club.name} </li>
-            })}
-          </ul>
-          <div className={styles.description}>
-            <form onSubmit={this.handleSubmit}>
-              <input onChange={this.handleInputChange} placeholder="New Club" />
-            </form>
           </div>
         </div>
-      </div>
     );
   }
 }

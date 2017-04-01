@@ -14,6 +14,17 @@ router.get('/allclubs', function (req, res, next) {
   })
 });
 
+router.post('/allmembers', function (req, res, next) {
+  Club.findAllMembers(req.body)
+  .then((members) => {
+    res.send(members);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send(500, err);
+  })
+})
+
 router.get('/allclubswithmember', function (req, res, next) {
   Club.findAllWithMember(req.query)
   .then((clubs) => {

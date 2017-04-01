@@ -3,6 +3,7 @@ import styles             from './style.css';
 import axios              from 'axios';
 import Post               from '../Post/index.jsx';
 import Event              from '../Event/index.jsx';
+import Navbar             from '../Navbar/index.jsx';
 
 export default class Club extends React.Component {
   constructor (props) {
@@ -23,6 +24,7 @@ export default class Club extends React.Component {
       avgmember: '',
       maxmember: '',
       minmember: '', 
+      allmembers: []
     }
   }
 
@@ -60,30 +62,67 @@ export default class Club extends React.Component {
       console.error(err);
     });
 
+    axios.post('/clubs/allmembers', {club_id: this.state.club_id})
+    .then((res) => {
+      context.setState({
+        allmembers: res.data
+      })
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
     this.countPost();
   }
 
   getBody() {
     console.log('this is AVG post', this.state.avgmember);
-    if (this.state.isMember) {
+    if (this.state.countpost.length) {
       return (
-        <div>
-          <div className={styles.post}> Posts </div>
-          <div>
-            {this.state.posts.map((post) => {
-              return <Post post={post} />
-            })}
-          </div>
-          <br/>
-          <div className={styles.description}> User: {this.state.username}</div>
-          <span className={styles.post}> {this.state.username} made: {this.state.countpost[0]["count(id)"]} </span>
+        <div className="container">
+            <div className="row">
+              <div className="col-md-6" >
+                <div className={styles.box}>
+                <div className={styles.post}> Posts </div>
+                <div>
+                  {this.state.posts.map((post) => {
+                    return <Post post={post} />
+                  })}
+                </div>
+                <div> Create New Post: <input onChange={this.handlePostChange.bind(this)} onKeyPress={this._handleKeyPress.bind(this)} placeholder = "Write something here"/></div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className={styles.box}>
+                <div className={styles.post}> Events </div>
+                <div>
+                  {this.state.events.map((event) => {
+                    return <Event event={event} />
+                  })}              
+                </div>
+                </div>
+              </div>
+            </div>
 
-          <div className={styles.post}> Events </div>
-          <div>
-            {this.state.events.map((event) => {
-              return <Event event={event} />
-            })}
-          </div>
+            <div className="row">
+              <div className="col-md-6">
+                <div className={styles.box}>
+                  <div className={styles.post}> Statistics </div>
+                  <div className={styles.post}> Number of posts you made: {this.state.countpost[0]["count(id)"]} </div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className={styles.box}>
+                <div className={styles.post}> Members </div>
+                <div>
+                  {this.state.allmembers.map((member) => {
+                    return <div> {member.username} </div>
+                  })}
+                </div>
+                </div>
+              </div>
+            </div>
+
         </div>
         )
     } else {
@@ -103,8 +142,8 @@ export default class Club extends React.Component {
     return (
       <div>
         <div className={styles.header}>{this.state.clubName}</div>
+        <Navbar />
         {body}
-        <span> Create New Post: <input onChange={this.handlePostChange.bind(this)} onKeyPress={this._handleKeyPress.bind(this)} placeholder = "Write something here"/></span>
       </div>
       )
 

@@ -17,4 +17,40 @@
 .description {
 	font-family: 'Montserrat', sans-serif;
 	color: #EFEFEF;
+  text-align: center;
+  padding: 10px;
+}
+
+input {
+  font-size: 0.8em;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0;
+  border-color: black;
+  text-decoration: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.userinfo {
+  float: right;
+  text-align: right;
+  width: 50%;
+  margin: 20px;
+}
+
+.clubs {
+  background-color: #191919;
+  margin-left: 100px;
+  max-width: 500px;
+  box-shadow: 2px 2px black;
+  padding: 10px;
+}
+
+.boxheader {
+  text-align: center;
+  padding: 10px;
+  font-size: 1.2em;
 }

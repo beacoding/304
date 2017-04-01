@@ -4,13 +4,15 @@
   font-size: 5em;
   color: #C44536;
   background-color: #EFEFEF;
-  margin: 0;
   padding: 30px;
 }
 
 .post {
   font-family: 'Montserrat', sans-serif;
   color: #EFEFEF;
+  text-align: center;
+  font-size: 1.5em;
+  margin: 10px;
 }
 
 .link {
@@ -22,4 +24,12 @@
 .description {
   font-family: 'Montserrat', sans-serif;
   color: #EFEFEF;
+}
+
+.box {
+  background-color: #191919;
+  box-shadow: 2px 2px black;
+  padding: 30px;
+  margin: 30px;
+  min-height: 300px;
 }

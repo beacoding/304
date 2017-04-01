@@ -6,8 +6,6 @@ export default class Navbar extends React.Component {
   constructor (props) {
     super (props);
 
-    this.handleClick = this.handleClick.bind(this);
-
     this.state = {
       username: JSON.parse(localStorage['user']).username
     }
@@ -26,14 +24,18 @@ export default class Navbar extends React.Component {
   render () {
     return (
       <div>
-        <div>
-          <div className={styles.description}>Welcome {this.state.username}</div>
-        </div>
-        <div>
-          <div className={styles.link} onClick={this.handleLinkClick.bind(this, 'logout')}>Logout</div>
-        </div>
-        <div>
-          <div className={styles.link} onClick={this.handleLinkClick.bind(this, 'allclubs')}>All Clubs</div>
+        <div className="row">
+          <div className={"col-md-12 " + styles.navbar}>
+            <span>
+              <a href="/stats">Statistics</a>
+            </span>
+            <span>
+              <a href="/clubs">Clubs</a>
+            </span>
+            <span>
+              <a href="/dashboard">Dashboard</a>
+            </span>
+          </div>
         </div>
       </div>
       )

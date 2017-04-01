@@ -12,3 +12,26 @@ div {
   margin: 0;
   padding: 30px;
 }
+
+.clubs {
+  color: white;
+}
+
+.clubs a {
+  color: white;
+  font-size: 2em;
+}
+
+.clubs a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.clubslink {
+  color: white;
+}
+
+.clubscontainer {
+  text-align: center;
+  margin-top: 100px;
+}

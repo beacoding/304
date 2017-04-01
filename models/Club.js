@@ -33,6 +33,20 @@ module.exports = {
     });
   },
 
+  findAllMembers: function (obj) {
+    return new Promise ((resolve, reject) => {
+      const queryString = 'SELECT * from Members m INNER JOIN Members_Clubs mc ON m.id = mc.member_id INNER JOIN Clubs c ON mc.club_id = c.id AND c.id =?';
+
+      db.query(queryString, [obj.club_id], (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      })
+    });
+  },
+
   findClubAndIfMember: function (obj) {
     const context = this;
     return new Promise ((resolve, reject) => {
@@ -268,7 +282,7 @@ module.exports = {
 
   avgNestQuery: function () {
     return new Promise ((resolve, reject) => {
-      const queryString = 'select mc.member_id, avg(c.total_members) from Clubs c, Members_clubs mc where mc.club_id=c.id group by mc.member_id';
+      const queryString = 'select mc.member_id, m.username, avg(c.total_members) from Clubs c, Members_clubs mc, Members m where mc.club_id=c.id AND m.id = mc.member_id group by mc.member_id';
       db.query(queryString, (err, res) => {
         if (err) {
           reject(err);
@@ -280,7 +294,7 @@ module.exports = {
   },
   maxNestQuery: function () {
     return new Promise ((resolve, reject) => {
-      const queryString = 'select mc.member_id, max(c.total_members) from Clubs c, Members_clubs mc where mc.club_id=c.id group by mc.member_id';
+      const queryString = 'select mc.member_id, m.username, max(c.total_members) from Clubs c, Members_clubs mc, Members m where mc.club_id=c.id AND m.id = mc.member_id group by mc.member_id';
       db.query(queryString, (err, res) => {
         if (err) {
           reject(err);
@@ -292,7 +306,7 @@ module.exports = {
   },
   minNestQuery: function () {
     return new Promise ((resolve, reject) => {
-      const queryString = 'select mc.member_id, MIN(c.total_members) from Clubs c, Members_clubs mc where mc.club_id=c.id group by mc.member_id';
+      const queryString = 'select mc.member_id, MIN(c.total_members), m.username from Clubs c, Members_Clubs mc, Members m where mc.club_id=c.id AND m.id = mc.member_id group by mc.member_id';
       db.query(queryString, (err, res) => {
         if (err) {
           reject(err);
